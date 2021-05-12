@@ -20,4 +20,4 @@ console.log(alumno.lang);
 
 alumno.lang = 'en';
 
-console.log(alumno.lang);
+console.log(alumno.idioma);
