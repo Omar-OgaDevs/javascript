@@ -1,7 +1,15 @@
+/*Los métodos estáticos se asocian con
+la clase y no con los objetos*/
+
 class Persona {
+
+  static contadorObjetosPersona = 0;
+
   constructor(nombre, apellido) {
     this._nombre = nombre;
     this._apellido = apellido;
+    Persona.contadorObjetosPersona++;
+    console.log('Se incrementa contador:' + Persona.contadorObjetosPersona);
   }
   get nombre() {
     return this._nombre;
@@ -24,6 +32,12 @@ class Persona {
     //el método que se ejecuta depende si es una referencia  de tipo
     //padre o de tipo hijo
     return this.nombreCompleto();
+  }
+  static saludar(){
+    console.log('saludos desde método static');
+  }
+  static saludar2(persona){
+    console.log(persona.nombre + ' ' + persona.apellido);
   }
 }
 class Empleado extends Persona{
@@ -50,3 +64,17 @@ let empleado1 = new Empleado('Evelyn','García','Sistemas');
 console.log(empleado1);
 console.log(empleado1.nombreCompleto());
 console.log(empleado1.toString());
+
+//persona1.saludar();
+//no es posible llamar un 
+//método static desde un objeto, pero si desde
+//una clase
+Persona.saludar();
+Persona.saludar2(persona1);
+
+Empleado.saludar();
+Empleado.saludar2(empleado1);
+//acceder desde la clase padre
+console.log(Persona.contadorObjetosPersona);
+//acceder desde la clase hija
+console.log(Empleado.contadorObjetosPersona);
